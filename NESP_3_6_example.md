@@ -80,13 +80,9 @@ The classification approach consisted of three main steps:
 
 ### X.4.3 Code examples
 
-The complete code implementation for this mapping process was implemented in Google Earth Engine. The following link includes:
-- Main mapping script
-- Supporting functions
-
-**Core mapping code:** [Seagrass Mapping Code](/NESP36_code/gee_mapping_code.js)
-**Mapping functions and parameters:** [Seagrass Mapping Code](/NESP36_code/gee_mapping_code_functions.js)
-
+The complete code implementation for this mapping process was implemented in Google Earth Engine, including:
+- **Core mapping code:** [Seagrass Mapping Code](/NESP36_code/gee_mapping_code.js)
+- **Mapping functions and parameters:** [Seagrass Mapping Code](/NESP36_code/gee_mapping_code_functions.js)
 
 ## X.5 Results and Demonstration
 
