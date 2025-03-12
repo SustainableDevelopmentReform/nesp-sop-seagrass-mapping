@@ -84,21 +84,9 @@ The complete code implementation for this mapping process was implemented in Goo
 - Main mapping script
 - Supporting functions
 
-**Code Link:** [Seagrass Mapping Code Repository](/NESP26_code) TODO: fixup
+**Core mapping code:** [Seagrass Mapping Code](/NESP36_code/gee_mapping_code.js)
+**Mapping functions and parameters:** [Seagrass Mapping Code](/NESP36_code/gee_mapping_code_functions.js)
 
-Key code excerpt showing the classification implementation:
-```javascript
-// Example code snippet (actual implementation available in repository)
-// Step 1: Generate seagrass probability surface
-var probabilityMap = covariateStack.classify(probabilityClassifier);
-
-// Step 2: Apply threshold to create binary extent map
-var extentMap = probabilityMap.gt(optimizedThreshold);
-
-// Step 3: Generate percent cover within the seagrass extent
-var coverMap = covariateStack.classify(coverClassifier)
-                            .updateMask(extentMap);
-```
 
 ## X.5 Results and Demonstration
 
