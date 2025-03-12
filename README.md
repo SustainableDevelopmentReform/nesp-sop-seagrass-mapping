@@ -73,11 +73,13 @@ Based on extensive research and practical experience, several best practices hav
 
 This SOP incorporates these best practices while maintaining flexibility to accommodate specific project requirements and technological advancements.
 
-### 2.3 Relationship to Other Protocols
+### 2.3 Relationship to Other Protocols and real-world applications
 
 This SOP builds upon and complements existing protocols for marine habitat mapping and seagrass monitoring. It aligns with internationally recognized standards and classification schemes, such as the Seamap Australia Benthic Classification Scheme, to ensure interoperability and consistency across different mapping initiatives.
 
-While primarily focused on remote sensing methodologies, this SOP acknowledges the importance of field-based approaches and encourages their integration as complementary data sources. Reference is made to relevant field protocols where appropriate, particularly for the collection of training and validation data.
+While primarily focused on remote sensing methodologies, this SOP acknowledges the importance of field-based approaches and encourages their integration as complementary data sources. Reference is made to relevant field protocols where appropriate, particularly for the collection of training and validation data.  
+
+This SOP is accompanied by a real-world application (Seagrass mapping in Tayaritja, Tasmania - Appendix X), and over time, other exmaples will be added.  
 
 ## 3. System Architecture
 
