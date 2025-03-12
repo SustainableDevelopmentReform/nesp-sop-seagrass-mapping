@@ -2254,3 +2254,6 @@ binary_map.to_netcdf('seagrass_binary.nc')
 - Seamap Australia Community (https://seamapaustralia.org/)
 - Group on Earth Observations Biodiversity Observation Network (GEO BON) (https://geobon.org/)
 - Australian Coastal and Marine Ecology Lab network (https://www.ozcoasts.gov.au/)
+
+### Appendix X: Application in Tayaritya / Furneaux Group
+- [NESP 3.6 project - seagrass mapping in Tayaritya, Tasmania](/NESP_3_6_example.md)
