@@ -77,7 +77,7 @@ This SOP incorporates these best practices while maintaining flexibility to acco
 
 Figure 1. shows the conceptual framework for technical and methodological components covered in this SOP.
 
-![Figure 1](figures/NESP_seagrass_SOP_conceptual_framework)
+![Figure 1](figures/NESP_seagrass_SOP_conceptual_framework.png)
 
 ### 2.4 Relationship to Other Protocols and real-world applications
 
