@@ -85,7 +85,7 @@ This SOP builds upon and complements existing protocols for marine habitat mappi
 
 While primarily focused on remote sensing methodologies, this SOP acknowledges the importance of field-based approaches and encourages their integration as complementary data sources. Reference is made to relevant field protocols where appropriate, particularly for the collection of training and validation data.  
 
-This SOP is accompanied by a real-world application (Seagrass mapping in Tayaritja, Tasmania - Appendix X), and over time, other exmaples will be added.  
+This SOP is accompanied by a real-world application - [NESP 3.6 project - seagrass mapping in Tayaritya, Tasmania](/NESP_3_6_example.md) in the [Appendices](#15-appendices), and over time, other examples will be added.  
 
 ## 3. System Architecture
 
