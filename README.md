@@ -73,7 +73,13 @@ Based on extensive research and practical experience, several best practices hav
 
 This SOP incorporates these best practices while maintaining flexibility to accommodate specific project requirements and technological advancements.
 
-### 2.3 Relationship to Other Protocols and real-world applications
+### 2.3 Conceptual framework
+
+Figure 1. shows the conceptual framework for technical and methodological components covered in this SOP.
+
+![Figure 1](figures/NESP_seagrass_SOP_conceptual_framework)
+
+### 2.4 Relationship to Other Protocols and real-world applications
 
 This SOP builds upon and complements existing protocols for marine habitat mapping and seagrass monitoring. It aligns with internationally recognized standards and classification schemes, such as the Seamap Australia Benthic Classification Scheme, to ensure interoperability and consistency across different mapping initiatives.
 
