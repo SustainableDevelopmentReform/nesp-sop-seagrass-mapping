@@ -4,8 +4,13 @@
 
 Global intertidal and sub-tidal mapping (seagrass focus)
 
+Copyright (c) 2025 Mitchell Lyons, UNSW Sydney. All rights reserved.
+
 IP and copyright owners:
 - Univeristy of New South Wales
+
+This work is licensed under the terms of the CC BY 4.0 license.  
+see <https://creativecommons.org/licenses/by/4.0/>
 
 Contact:
 - Mitchell Lyons
