@@ -81,8 +81,8 @@ The classification approach consisted of three main steps:
 ### X.4.3 Code examples
 
 The complete code implementation for this mapping process was implemented in Google Earth Engine, including:
-- **Core mapping code:** [javascript API code](/gee_mapping_code.js)
-- **Supporting functions and parameters:** [javascript API code](/gee_mapping_code_functions.js)
+- **Core mapping code:** [javascript API code](./gee_mapping_code.js)
+- **Supporting functions and parameters:** [javascript API code](./gee_mapping_code_functions.js)
 
 ## X.5 Results and Demonstration
 
