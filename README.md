@@ -2262,4 +2262,4 @@ binary_map.to_netcdf('seagrass_binary.nc')
 - Australian Coastal and Marine Ecology Lab network (https://www.ozcoasts.gov.au/)
 
 ### Appendix X: Application in Tayaritya / Furneaux Group
-- [NESP 3.6 project - seagrass mapping in Tayaritya, Tasmania](/NESP_3_6_example.md)
+- [NESP 3.6 project - seagrass mapping in Tayaritya, Tasmania](/case_study_NESP3.6/NESP_3.6_case_study.md)
