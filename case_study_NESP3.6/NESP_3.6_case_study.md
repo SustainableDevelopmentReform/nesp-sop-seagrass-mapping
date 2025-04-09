@@ -16,13 +16,13 @@ The study area encompasses the western region of the Furneaux Group of Islands, 
 
 ### X.3.1 Field Data Collection
 
-Field data collection followed the protocols outlined in Section 4 of the SOP, utilizing a statistically balanced sampling approach that maintained uniform sampling intensity while avoiding preference or exclusion of any areas.
+Field data collection followed the protocols outlined in Section 4 of the Seagrass Mapping SOP (link), utilizing a statistically balanced sampling approach that maintained uniform sampling intensity while avoiding preference or exclusion of any areas.
 
 The Benthic Observation Survey System (BOSS) was employed for collecting in-situ data, as described in Section 4.3 of the SOP. The BOSS system captures high-resolution panoramic imagery of the seafloor from multiple angles, providing detailed benthic habitat information. The CATAMI classification scheme was used for benthic feature labeling, with points annotated using the Squidle+ platform.
 
 ![BOSS Camera System - Image showing the deployment of the BOSS system with its four field view angles and example image output]
 
-Field data was stratified to ensure representative subsets for calibration (70%) and validation (30%), maintaining similar depth distributions and benthic class representations in both subsets. The sampling design focused on capturing the full range of seagrass conditions, from dense beds to sparse coverage, as well as non-seagrass substrates for comparison.
+Field data was processed using the automated export functionality from [SQUIDDLE+](https://squidle.org/), and is publically available from that platform (DOI or reference to data?). The sampling design focused on capturing the full range of seagrass conditions and depth ranges, from dense beds to sparse coverage, as well as non-seagrass substrates for comparison.
 
 ### X.3.2 Environmental Data Sources
 
@@ -41,8 +41,10 @@ Following the guidance in Section 4.2 of the SOP, several ancillary data sources
 ### X.3.3 Satellite Image Data
 
 **Sentinel-2 Multispectral Imagery:**
-- Processing aligned with Section 6.1 of the SOP, creating multi-temporal stacks between dates `yyyy-mm-dd` and `yyyy-mm-dd`
-- Cloud masking using both Scene Classification Layer (SCL), cloud probability datasets and Google Cloud Score Plus
+- Processing aligned with Section 6.1 of the SOP, creating two difference multi-temporal stacks
+    - For the baseline habitat occurence probabliity layers: all images between `yyyy-mm-dd` and `yyyy-mm-dd`
+    - For the habitat benthic % cover layers: all images between `yyyy-mm-dd` and `yyyy-mm-dd`
+- Cloud masking using Google Cloud Score Plus
 - Composite images were produced using percentile metrics (20th, 40th, 60th, 80th)
 
 ![Sentinel-2 Composite - True-color image showing the study site with cloud masking and atmospheric correction applied]
@@ -51,29 +53,35 @@ Following the guidance in Section 4.2 of the SOP, several ancillary data sources
 
 ### X.4.1 Mapping Products
 
-Three key mapping products were developed for this case study:
+Three key types of mapping products were developed for this project:
 
-1. **Seagrass Occurrence Probability Map**: A continuous probability surface (0-100%) indicating the likelihood of seagrass presence at each pixel
-2. **Seagrass Extent Map**: A binary presence/absence map derived by applying an optimized probability threshold to the occurrence probability map
-3. **Seagrass Percent Cover Map**: A continuous map showing estimated seagrass percent cover within the mapped extent, providing finer detail on seagrass density variations
-4. **Seagrass - Macroalgae - Sand fracitonal cover**: Method adapted to include Mcroalgae adn Sand to present a fracitonal cover style map ... ? REfer to terrestrial verisons?
+1. **Occurrence probability maps**: A continuous probability surface (0-100%) indicating the likelihood of habitat presence at each pixel
+    - Seagrass (including all morphologies; > 5% cover in the BOSS field data observations)
+    - Macroalgae (macroaglae species/assembledges as defined in the Seamap schema)
+    - Sand (as per the Seamap schema)
+2. **Habitat percentage cover maps**: A binary presence/absence map derived by applying an optimized probability threshold to the occurrence probability map
+    - Seagrass (including all morhpologies)
+    - Macroalgae (macroaglae species/assembledges as defined in the Seamap schema)
+    - Sand (as per the Seamap schema)
+3. **Derived products**:
+    - Baseline seagrass presence/extent - the seagrass probability layer was converted into a baseline binary extent product
+    - Using the habitat % cover maps, a fractional cover product is also reccomended to be visualised - this is similar to terrestiral fraction cover products 
 
 These products offer complementary information: the probability map provides confidence information, the extent map offers a clear delineation of seagrass boundaries, and the percent cover map enables quantitative analysis of seagrass density patterns.
 
 ### X.4.2 Classification Approach
 
-The mapping methodology followed Section 7 of the SOP, using Random Forest classification models for their robustness and effectiveness with complex environmental data. The models were developed with parameters optimized for the study area, including:
-- Appropriate tree depth
-- Optimized leaf population
-- Balanced out-of-bag fraction
-- A comprehensive set of predictor variables
+The mapping methodology followed Section 7 of the SOP, opting for a gradient boosting machine for their effectiveness with complex environmental data. The models were developed with parameters optimized for the study area, including:
+- Number of trees: 1000
+- Shrinkage (learning rate): 0.005
+- Sampling rate (fraction): 0.6
+- Max nodes (depth): 10
+- Distribution (Bernoulli for occurance, Gaussian for % cover)
 
 The classification approach consisted of three main steps:
 
-1. **Probabilistic Seagrass Classification**: Initial generation of a continuous probability surface indicating the likelihood of seagrass presence at each pixel
-
+1. **Probabilistic Classification**: Initial generation of a continuous probability surface indicating the likelihood of seagrass presence at each pixel
 2. **Threshold Selection and Application**: Determination of an optimal probability threshold to convert the continuous probability map into a binary presence/absence map
-
 3. **Cover Estimation within Seagrass Extent**: For areas identified as seagrass, a secondary model estimated percent cover, while also classifying non-seagrass areas as either macroalgae or sand
 
 ![Mapping Workflow Diagram - Flow diagram showing the three-step classification process]
@@ -90,12 +98,16 @@ The complete code implementation for this mapping process was implemented in Goo
 
 The three mapping products provide complementary information about seagrass distribution:
 
+Seamap link??
 ![Seagrass Probability Map - Showing the continuous probability surface with values from 0-100%]
 
+Seamap link??
 ![Seagrass Extent Map - Showing the binary presence/absence of seagrass after threshold application]
 
+Seamap link??
 ![Seagrass Percent Cover Map - Showing the continuous estimation of seagrass cover percentage within the mapped extent]
 
+Seamap link??
 ![Seagrass Fractional Cover Map - Showing the seagrass fractional cover prodcut within the mapped extent]
 
 The maps reveal spatial patterns in seagrass distribution across the study area, with notable variations related to bathymetry, wave exposure, and substrate type. Dense seagrass beds are concentrated in protected areas with suitable depth and substrate conditions, while more patchy distribution is observed in transition zones.
@@ -116,10 +128,18 @@ Analysis of variable importance across the Random Forest models reveals the key 
 
 ### X.5.3 Model Performance
 
-The methodology demonstrates strong performance across multiple validation metrics:
+#### Validation methods
+- Resampling methods
+- Hold out by drop location: 33% hold out, repated 1000 times
 
-- **Overall Accuracy**: The binary seagrass extent map achieves `[xx - xx]` overall accuracy when validated against independent field observations
-  
+- **Overall Accuracy**: 
+[1] "Seagrass presence p(0.5) accuracy: 0.91 (0.87-0.92)"
+[1] "Macroalgae presence p(0.5) accuracy: 0.82 (0.8-0.85)"
+[1] "Sand presence p(0.5) accuracy: 0.91 (0.9-0.92)"
+[1] "Seagrass %cover RMSE: 0.22 (0.21-0.24)"
+[1] "Macroalgae %cover RMSE: 0.23 (0.21-0.24)"
+[1] "Sand %cover RMSE: 0.22 (0.2-0.24)"
+
 - **Probability Calibration**: The probability values show good alignment with observed seagrass presence frequency across the probability range
 
 - **Cover Estimation Accuracy**: The percent cover model shows `[xx - xx]` correlation with field-measured cover values
