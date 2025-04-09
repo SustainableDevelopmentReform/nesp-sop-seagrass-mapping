@@ -132,15 +132,16 @@ Analysis of variable importance across the Random Forest models reveals the key 
 - Resampling methods
 - Hold out by drop location: 33% hold out, repated 1000 times
 
-- **Overall Accuracy**: 
-[1] "Seagrass presence p(0.5) accuracy: 0.91 (0.87-0.92)"
-[1] "Macroalgae presence p(0.5) accuracy: 0.82 (0.8-0.85)"
-[1] "Sand presence p(0.5) accuracy: 0.91 (0.9-0.92)"
-[1] "Seagrass %cover RMSE: 0.22 (0.21-0.24)"
-[1] "Macroalgae %cover RMSE: 0.23 (0.21-0.24)"
-[1] "Sand %cover RMSE: 0.22 (0.2-0.24)"
+- **Overall Accuracy** (probability/extent products): 
+    - "Seagrass presence p(0.5) accuracy: 0.91 (0.87-0.92)"
+    - "Macroalgae presence p(0.5) accuracy: 0.82 (0.8-0.85)"
+    - "Sand presence p(0.5) accuracy: 0.91 (0.9-0.92)"
 
-- **Probability Calibration**: The probability values show good alignment with observed seagrass presence frequency across the probability range
+- **Overall Accuracy** (RMSE on % cover values): 
+    - "Seagrass %cover RMSE: 0.22 (0.21-0.24)"
+    - "Macroalgae %cover RMSE: 0.23 (0.21-0.24)"
+    - "Sand %cover RMSE: 0.22 (0.2-0.24)"
+
 
 - **Cover Estimation Accuracy**: The percent cover model shows `[xx - xx]` correlation with field-measured cover values
 
