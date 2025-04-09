@@ -13,20 +13,67 @@ Contact:
 ###############################################################
 */
 
-var tayaritja_BOSSprob_24 = {
+var tayaritja_prob_24 = {
   //study site variables
-  // note you may need to (you should anyway) update to your own assets
-  training_data_set: "projects/ee-srdh/assets/training/tayaritja_BOSS_buffer_pts",
-  class_field: "Sg_pct", // field with the training data
-  study_site_name: "tayaritja_sgprob",
+  training_data_set: "projects/ee-srdh/assets/training/nesp36_boss_buff",
+  class_field: "sg_pa", // field with the training data
+  study_site_name: "nesp36_sgprob",
   depth: "projects/ee-srdh/assets/imagery/tayaritja/lidar3m",
   waves: "projects/ee-srdh/assets/imagery/tayaritja/waves",
   manual_mask: "projects/ee-srdh/assets/imagery/tayaritja/extent_clip",
   // Sentinel-2 / Landsat8 iamge stack varaibles
   start_date: '2023-01-01',
-  end_date: '2024-12-31',
+  end_date: '2025-12-31',
   cloudy_threshold: 5, // lte cloudy scene percentage threshold (to reduce stack length)
-  gcsp_thresh: 0.85, // S2 Google Cloud score + threshold
+  gcsp_band: ['cs'],      // GCSP cloud probability band (cs, cs_cdf)
+  gcsp_thresh: 0.50, // S2 Google Cloud score + threshold
+  //s2_keep_bands: ['B1','B2','B3','B4','B5','B6','B7','B8'],
+  s2_keep_bands: ['B2','B3','B4','B8'],
+  ls8_keep_bands: ['SR_B1','SR_B2','SR_B3','SR_B4','SR_B5'],
+  // other imagery == Planet scene details
+  doveR: "", // Dove-S/R image if existing
+  superdove: "projects/ee-srdh/assets/imagery/tayaritja/sd_feb24", // SuperDove image if existing
+  // classification + model variables
+  segment_image: false, // apply segmentation to the stack ebfore classification?
+  model_arch: 'brt',
+  output_mode: 'PROBABILITY',
+  print_model: true, // print out model diagnostics to console?
+  ls8_model_bands: ["all_bands"],
+  s2_model_bands:['B2_p20','B2_p40','B2_p60','B2_p80',
+                  'B3_p20','B3_p40','B3_p60','B3_p80',
+                  'B4_p20','B4_p40','B4_p60','B4_p80',
+                  //'B8_p20','B8_p40','B8_p60','B8_p80','B8_p100',
+                  //'rg_median','rb_median',
+                  //'ndvi','ndwi1'],
+                  'depth','depth_std','slope','slope_avg','rugosity',
+                  'wf_max','wf_avg','wf_std'],
+  sd_model_bands: ['b1','b2','b3','b4','b5','b6','b7',
+                   'depth','depth_std','slope','slope_avg','rugosity',
+                   'wf_max','wf_avg','wf_std'],
+  // post processing varaibles
+  land_mask: true, // For large areas land masking via OSM can be expensive
+  depth_mask: true, // apply depth masking (make sure bathymetry layer is defined)
+  depth_positive: false, // is underwater denoted by positive values? (if true layer will my multiplied by -1)
+  depth_thresh: -30, // depth below which masking is applied
+  depth_only_map: true, // constrain the mapping to the extent of the depth layer?
+  apply_manual_mask: false, // apply a manual mask (make sure the layer is defined)
+  prob_thresh: 0.75 // threshold for making extent map (e.g. seagrass, coral etc.) from model probablity
+};
+
+var tayaritja_cover_24 = {
+  //study site variables
+  training_data_set: "projects/ee-srdh/assets/training/nesp36_boss_buff",
+  class_field: "sg_pct", // field with the training data
+  study_site_name: "nesp36_sgprob",
+  depth: "projects/ee-srdh/assets/imagery/tayaritja/lidar3m",
+  waves: "projects/ee-srdh/assets/imagery/tayaritja/waves",
+  manual_mask: "projects/ee-srdh/assets/imagery/tayaritja/extent_clip",
+  // Sentinel-2 / Landsat8 iamge stack varaibles
+  start_date: '2024-04-01',
+  end_date: '2025-12-31',
+  cloudy_threshold: 5, // lte cloudy scene percentage threshold (to reduce stack length)
+  gcsp_band: ['cs'],      // GCSP cloud probability band (cs, cs_cdf)
+  gcsp_thresh: 0.50, // S2 Google Cloud score + threshold
   //s2_keep_bands: ['B1','B2','B3','B4','B5','B6','B7','B8'],
   s2_keep_bands: ['B2','B3','B4','B8'],
   ls8_keep_bands: ['SR_B1','SR_B2','SR_B3','SR_B4','SR_B5'],
@@ -293,7 +340,8 @@ function maskS2clouds_2A(keep_bands, output_mask) {
   
   // exports
   exports = {
-    tayaritja_BOSSprob_24: tayaritja_BOSSprob_24,
+    tayaritja_cover_24: tayaritja_cover_24,
+    tayaritja_prob_24: tayaritja_prob_24,
     maskS2clouds_2A: maskS2clouds_2A,
     maskS2clouds_2A_gcsp: maskS2clouds_2A_gcsp,
     maskS2clouds_2A_noextent: maskS2clouds_2A_noextent,
