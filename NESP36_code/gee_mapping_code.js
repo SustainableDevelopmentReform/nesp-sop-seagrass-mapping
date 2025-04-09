@@ -37,7 +37,7 @@ User defined inputs/geometries
 - define these here in this script
 */
 // parameter set to load
-var params = seagrass_params.tayaritja_BOSSprob_24;
+var params = seagrass_params.tayaritja_prob_24;
 // seagrass type visualisation - extent, prob, binary?
 var sg_vis = viridis_float;
 var show_sg_points = true;
