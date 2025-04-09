@@ -131,6 +131,7 @@ Analysis of variable importance across the Random Forest models reveals the key 
 #### Validation methods
 - Resampling methods
 - Hold out by drop location: 33% hold out, repated 1000 times
+- Need to convert probabilities to binary presence to validate - we used p(0.5) in this case
 
 - **Overall Accuracy** (probability/extent products): 
     - "Seagrass presence p(0.5) accuracy: 0.91 (0.87-0.92)"
@@ -143,9 +144,7 @@ Analysis of variable importance across the Random Forest models reveals the key 
     - "Sand %cover RMSE: 0.22 (0.2-0.24)"
 
 
-- **Cover Estimation Accuracy**: The percent cover model shows `[xx - xx]` correlation with field-measured cover values
-
-The validation process follows the protocols outlined in Section 8 of the SOP, employing independent test data and appropriate accuracy metrics for each mapping product.
+The validation process follows the protocols outlined in Section 8 of the SOP, employing a resmapling based approach as described in Lyons et al. 2018. Further explanation....
 
 ## X.6 Operational Considerations
 
