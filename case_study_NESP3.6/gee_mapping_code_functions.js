@@ -20,12 +20,12 @@ Contact:
 
 var tayaritja_prob_24 = {
   //study site variables
-  training_data_set: "projects/ee-srdh/assets/training/nesp36_boss_buff",
-  class_field: "sg_pa", // field with the training data
+  training_data_set: "projects/.../training/nesp36_boss_buff",
+  class_field: "sg_pa", // field with the training data (could be sg_pa, ma_pa, sa_pa)
   study_site_name: "nesp36_sgprob",
-  depth: "projects/ee-srdh/assets/imagery/tayaritja/lidar3m",
-  waves: "projects/ee-srdh/assets/imagery/tayaritja/waves",
-  manual_mask: "projects/ee-srdh/assets/imagery/tayaritja/extent_clip",
+  depth: "projects/.../imagery/tayaritja/lidar3m",
+  waves: "projects/.../imagery/tayaritja/waves",
+  manual_mask: "projects/.../imagery/tayaritja/extent_clip",
   // Sentinel-2 / Landsat8 iamge stack varaibles
   start_date: '2023-01-01',
   end_date: '2025-12-31',
@@ -37,7 +37,7 @@ var tayaritja_prob_24 = {
   ls8_keep_bands: ['SR_B1','SR_B2','SR_B3','SR_B4','SR_B5'],
   // other imagery == Planet scene details
   doveR: "", // Dove-S/R image if existing
-  superdove: "projects/ee-srdh/assets/imagery/tayaritja/sd_feb24", // SuperDove image if existing
+  superdove: "projects/.../imagery/tayaritja/sd_feb24", // SuperDove image if existing
   // classification + model variables
   segment_image: false, // apply segmentation to the stack ebfore classification?
   model_arch: 'brt',
@@ -67,12 +67,12 @@ var tayaritja_prob_24 = {
 
 var tayaritja_cover_24 = {
   //study site variables
-  training_data_set: "projects/ee-srdh/assets/training/nesp36_boss_buff",
-  class_field: "sg_pct", // field with the training data
+  training_data_set: "projects/.../training/nesp36_boss_buff",
+  class_field: "sg_pct", // field with the training data (could be sg_pct, ma_pct, sa_pct)
   study_site_name: "nesp36_sgprob",
-  depth: "projects/ee-srdh/assets/imagery/tayaritja/lidar3m",
-  waves: "projects/ee-srdh/assets/imagery/tayaritja/waves",
-  manual_mask: "projects/ee-srdh/assets/imagery/tayaritja/extent_clip",
+  depth: "projects/.../imagery/tayaritja/lidar3m",
+  waves: "projects/.../imagery/tayaritja/waves",
+  manual_mask: "projects/.../imagery/tayaritja/extent_clip",
   // Sentinel-2 / Landsat8 iamge stack varaibles
   start_date: '2024-04-01',
   end_date: '2025-12-31',
@@ -84,7 +84,7 @@ var tayaritja_cover_24 = {
   ls8_keep_bands: ['SR_B1','SR_B2','SR_B3','SR_B4','SR_B5'],
   // other imagery == Planet scene details
   doveR: "", // Dove-S/R image if existing
-  superdove: "projects/ee-srdh/assets/imagery/tayaritja/sd_feb24", // SuperDove image if existing
+  superdove: "projects/.../imagery/tayaritja/sd_feb24", // SuperDove image if existing
   // classification + model variables
   segment_image: false, // apply segmentation to the stack ebfore classification?
   model_arch: 'brt',
