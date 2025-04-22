@@ -1,4 +1,4 @@
-# Appendix 1: Case Study Application - Tayaritja (Furneaux Islands) Seagrass Mapping
+# SOP Case Study Application - Tayaritja (Furneaux Islands) Seagrass Mapping
 
 ## 1 Project Overview
 
