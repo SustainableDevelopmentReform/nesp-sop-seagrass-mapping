@@ -25,6 +25,10 @@
 
 This Standard Operating Procedure (SOP) provides comprehensive guidelines for mapping seagrass habitats using optical remote sensing techniques. It outlines standardized methodologies for data acquisition, processing, classification, validation, and quality control to ensure consistency, repeatability, and comparability across different mapping initiatives. While the primary focus is on using Sentinel-2 multitemporal imagery within the Google Earth Engine (GEE) platform, the SOP provides flexibility to accommodate alternative satellite sensors, computing environments, and specific project requirements.
 
+#### Real-world Application 
+This SOP also provides an example of real-world application, and will aim to expand this over time. At present applicaiton includes:
+- [**NESP 3.6 project - seagrass mapping in Tayaritya, Tasmania**](/case_study_NESP3.6/NESP_3.6_case_study.md)
+
 ### 1.2 Background
 
 Seagrasses constitute one of the most important benthic habitats in coastal waters globally, providing numerous ecosystem services including nursery habitat, carbon sequestration, sediment stabilization, and water quality improvement. Accurate and up-to-date information on seagrass distribution, extent, and condition is essential for effective marine spatial planning, conservation management, and environmental monitoring.
@@ -2261,5 +2265,6 @@ binary_map.to_netcdf('seagrass_binary.nc')
 - Group on Earth Observations Biodiversity Observation Network (GEO BON) (https://geobon.org/)
 - Australian Coastal and Marine Ecology Lab network (https://www.ozcoasts.gov.au/)
 
-### Appendix X: Application in Tayaritya / Furneaux Group
-- [NESP 3.6 project - seagrass mapping in Tayaritya, Tasmania](/case_study_NESP3.6/NESP_3.6_case_study.md)
+### Appendix D: Case studies applying and demonstrating the SOP
+- [**NESP 3.6 project - seagrass mapping in Tayaritya, Tasmania**](/case_study_NESP3.6/NESP_3.6_case_study.md)
+- More coming in the future, _or contact us to add your case study to the SOP_
