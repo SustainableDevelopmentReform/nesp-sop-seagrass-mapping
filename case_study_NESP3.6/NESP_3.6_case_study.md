@@ -10,7 +10,8 @@ The Furneaux Group of Islands represents a significant ecological and cultural a
 
 The study area encompasses the western region of the Furneaux Group of Islands, with primary focus on the coastal waters surrounding Flinders Island. The mapped area extends from the coastline at high tide to a depth limit determined by the reliable detection of seagrass features using optical remote sensing techniques (approximately 30 meters in this case). This depth threshold was established through analysis of field data and satellite imagery capabilities in the study region.
 
-![Tayaritja Study Area - Sentinel-2 image stack visualised to show the mapping extent constraint for the project](./study_site.png)
+![](./study_site.png)  
+**Tayaritja Study Area - Sentinel-2 image stack visualised to show the mapping extent constraint for the project**
 
 ## 3. Data Sources and Collection
 
@@ -20,7 +21,8 @@ Field data collection followed the protocols outlined in Section 4 of the Seagra
 
 The [Benthic Observation Survey System (BOSS)](https://drop-camera-field-manual.github.io/) was employed for collecting in-situ data, as described in Section 4.3 of the SOP. The BOSS system captures high-resolution panoramic imagery of the seafloor from multiple angles, providing detailed benthic habitat information. The CATAMI classification scheme was used for benthic feature labeling, with points annotated using the Squidle+ platform.
 
-![BOSS site locations, showing where seagrass was present (green) and absent (red)](./boss_pts.png)
+![](./boss_pts.png)  
+**BOSS site locations, showing where seagrass was present (green) and absent (red)**
 
 Field data was processed using the automated export functionality from [SQUIDDLE+](https://squidle.org/), and is publicly available from that platform. The data were exported with the standard naming attributes, as well as the "Seamap Australia" translated label. For additional processing and preparation of field data for mapping applications, we developed an [R script](./boss_raw_processing.R) that handles data cleaning and format standardization, usage parameters and output formats. The processing workflow converts the BOSS raw annotated observation data into a [training and validation dataset](./boss_nesp36_processed.csv) suitable for input into the classification/mapping workflow.
 
@@ -49,7 +51,8 @@ Following the guidance in Section 4.2 of the SOP, several ancillary data sources
 - Cloud masking using Google Cloud Score Plus
 - Composite images were produced using percentile metrics (20th, 40th, 60th, 80th)
 
-![Sentinel-2 baseline (2023-2025) Composite](./s2_baseline.png)
+![](./s2_baseline.png)  
+**Sentinel-2 baseline (2023-2025) Composite**
 
 ## 4. Mapping Methodology
 
@@ -104,14 +107,17 @@ Visual snapshots of the outputs are provided below, but the following full produ
 - [Seagrass/Macroalgae/Sand benthic percentage cover layers (+associated fractional cover visualisation)](Seamap/or/metadata/link)
 - [Baseline seagrass extent](Seamap/or/metadata/link)
 
-![Seagrass Probability Map - continuous probability surface with values from 0-100%](./sgprob.png)
+![](./sgprob.png)  
+**Seagrass Probability Map - continuous probability surface with values from 0-100%**  
 
-![Seagrass Extent Map - binary presence/absence of seagrass after threshold application and manual editing](./sgextent.png)
+![](./sgextent.png)  
+**Seagrass Extent Map - binary presence/absence of seagrass after threshold application and manual editing**  
 
-![Seagrass Percent Cover Map - continuous estimation of seagrass cover percentage within the mapped extent](./sgcov.png)
+![](./sgcov.png)  
+**Seagrass Percent Cover Map - continuous estimation of seagrass cover percentage within the mapped extent**  
 
-![Seagrass Fractional Cover Map - fractional cover product within the mapped extent](./sgfc.png)
-
+![](./sgfc.png)  
+**Seagrass Fractional Cover Map - fractional cover product within the mapped extent**  
 
 ### 5.2 Variable Importance
 
@@ -125,7 +131,8 @@ Analysis of variable importance across the classification models reveals the key
 
 4. **Substrate Complexity**: Rugosity metrics at various scales help differentiate suitable seagrass habitat from other benthic environments
 
-![Example Variable Importance Chart - Bar chart representing the relative importance of different predictor variables across classification models (for seagrass presence)](./sgprob_vi.png)
+![](./sgprob_vi.png)  
+**Example Variable Importance Chart - Bar chart representing the relative importance of different predictor variables across classification models (for seagrass presence)**
 
 ### 5.3 Mapping Validation
 
