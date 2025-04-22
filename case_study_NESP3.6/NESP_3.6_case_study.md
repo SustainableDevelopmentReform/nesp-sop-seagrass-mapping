@@ -1,26 +1,26 @@
 # SOP Case Study Application - Tayaritja (Furneaux Islands) Seagrass Mapping
 
-## 1 Project Overview
+## 1. Project Overview
 
 This case study demonstrates the application of the Seagrass Mapping SOP to map benthic habitats, with particular focus on seagrass meadows, in the Furneaux Group of Islands (Tayaritja) in north-eastern Tasmania. The project was conducted as part of the National Environmental Science Program (NESP) Marine and Coastal Hub's Project 3.6, which aimed to improve data on the distribution and ecological value of temperate subtidal seagrass in the region.
 
 The Furneaux Group of Islands represents a significant ecological and cultural area, home to extensive seagrass meadows supporting various marine ecosystems. This mapping effort addresses a critical knowledge gap regarding the extent and distribution of coastal seagrass habitats in eastern Bass Strait, which was identified in the NESP Marine and Coastal Hub national wetlands scoping study.
 
-## 2 Study Area
+## 2. Study Area
 
-The study area encompasses the western region of the Furneaux Group of Islands, with primary focus on the coastal waters surrounding Flinders Island. The mapped area extends from the coastline at high tide to a depth limit determined by the reliable detection of seagrass features using optical remote sensing techniques (approximately 18 meters in this case). This depth threshold was established through analysis of field data and satellite imagery capabilities in the study region.
+The study area encompasses the western region of the Furneaux Group of Islands, with primary focus on the coastal waters surrounding Flinders Island. The mapped area extends from the coastline at high tide to a depth limit determined by the reliable detection of seagrass features using optical remote sensing techniques (approximately 30 meters in this case). This depth threshold was established through analysis of field data and satellite imagery capabilities in the study region.
 
-![Study Area Map - Furneaux Group of Islands with the study area extent highlighted]
+![Tayaritja Study Area - Sentinel-2 image stack visualised to show the mapping extent constraint for the project](./study_site.png)
 
-## 3 Data Sources and Collection
+## 3. Data Sources and Collection
 
 ### 3.1 Field Data Collection
 
 Field data collection followed the protocols outlined in Section 4 of the Seagrass Mapping SOP, utilizing a statistically balanced sampling approach that maintained uniform sampling intensity while avoiding preference or exclusion of any areas.
 
-The Benthic Observation Survey System (BOSS) was employed for collecting in-situ data, as described in Section 4.3 of the SOP. The BOSS system captures high-resolution panoramic imagery of the seafloor from multiple angles, providing detailed benthic habitat information. The CATAMI classification scheme was used for benthic feature labeling, with points annotated using the Squidle+ platform.
+The [Benthic Observation Survey System (BOSS)](https://drop-camera-field-manual.github.io/) was employed for collecting in-situ data, as described in Section 4.3 of the SOP. The BOSS system captures high-resolution panoramic imagery of the seafloor from multiple angles, providing detailed benthic habitat information. The CATAMI classification scheme was used for benthic feature labeling, with points annotated using the Squidle+ platform.
 
-![BOSS Camera System - Image showing the deployment of the BOSS system with its four field view angles and example image output]
+![BOSS site locations, showing where seagrass was present (green) and absent (red)](./boss_pts.png)
 
 Field data was processed using the automated export functionality from [SQUIDDLE+](https://squidle.org/), and is publicly available from that platform. The data were exported with the standard naming attributes, as well as the "Seamap Australia" translated label. For additional processing and preparation of field data for mapping applications, we developed an [R script](./boss_raw_processing.R) that handles data cleaning and format standardization, usage parameters and output formats. The processing workflow converts the BOSS raw annotated observation data into a [training and validation dataset](./boss_nesp36_processed.csv) suitable for input into the classification/mapping workflow.
 
@@ -49,15 +49,15 @@ Following the guidance in Section 4.2 of the SOP, several ancillary data sources
 - Cloud masking using Google Cloud Score Plus
 - Composite images were produced using percentile metrics (20th, 40th, 60th, 80th)
 
-![Sentinel-2 Composite - True-color image showing the study site with cloud masking and atmospheric correction applied]
+![Sentinel-2 baseline (2023-2025) Composite](./s2_baseline.png)
 
-## 4 Mapping Methodology
+## 4. Mapping Methodology
 
 ### 4.1 Mapping Products
 
 Three key types of mapping products were developed for this project:
 
-1. **Occurrence probability maps**: Continuous probability surfaces (0-100%) indicating the likelihood of habitat presence at each pixel for:
+1. **Occurrence probability maps**: Continuous probability surfaces (0-100%), modelled from presence/absence data, indicating the likelihood of habitat presence at each pixel for:
     - Seagrass (including all morphologies; > 5% cover in the BOSS field data observations)
     - Macroalgae (species/assemblages as defined in the Seamap schema)
     - Sand (as per the Seamap schema)
@@ -71,7 +71,7 @@ Three key types of mapping products were developed for this project:
     - Baseline seagrass presence/extent - binary maps derived by applying optimized probability thresholds to the occurrence probability layers
     - Fractional cover visualization - combining cover percentages of multiple habitats into a single composite product
 
-These complementary products serve different purposes: probability maps provide confidence information, extent maps offer clear delineation of seagrass boundaries, and percent cover maps enable quantitative analysis of seagrass density patterns. Together, they provide a comprehensive understanding of seagrass distribution across the study area.
+These complementary products serve different purposes: probability maps provide confidence information, extent maps offer clear delineation of seagrass boundaries where required, and percent cover maps enable quantitative analysis of seagrass (and other habitat) density patterns. Together, they provide a comprehensive understanding of seagrass distribution across the study area.
 
 ### 4.2 Classification Approach
 
@@ -84,37 +84,34 @@ The mapping methodology followed Section 7 of the SOP, opting for gradient boost
 
 The classification approach consisted of three main steps:
 
-1. **Probabilistic Classification**: Initial generation of a continuous probability surface indicating the likelihood of seagrass presence at each pixel
-2. **Threshold Selection and Application**: Determination of an optimal probability threshold to convert the continuous probability map into a binary presence/absence map
-3. **Cover Estimation within Seagrass Extent**: For areas identified as seagrass, a secondary model estimated percent cover, while also classifying non-seagrass areas as either macroalgae or sand
+1. **Probabilistic Classification**: Generation of a continuous probability (from classificaiton trees) surface indicating the likelihood of seagrass (+ macroaglae/sand) presence at each pixel
+2. **Habitat percent cover regression**: Generation of continuous percetnage cover estimates (from regression trees) indicating cover of seagrass (+ macroaglae/sand) in each pixel
+3. **Threshold Selection and Extent Mapping**: Determination of a probability threshold, combining with information from other modelled productds and manual editing boundaries, to define a _baseline seagrass extent_
+4. **Seagrass cover and fractional cover products**: Seagrass percent cover and frational cover products are presented for areas identified within the baseline seagrass extent
 
-![Mapping Workflow Diagram - Flow diagram showing the three-step classification process]
+### 4.3 Mapping Code
 
-### 4.3 Code Examples
-
-The complete code implementation for this mapping process was implemented in Google Earth Engine, using the JavaScript API:
+The complete code implementation for this mapping process was implemented in Google Earth Engine, using the JavaScript API and [processed field data above (bathymetry product available on request):
 - [**Core mapping code**](./gee_mapping_code.js)
 - [**Supporting functions and parameters**](./gee_mapping_code_functions.js)
 
-## 5 Results and Validation
+## 5. Results and Validation
 
 ### 5.1 Output Maps
 
-The three mapping products provide complementary information about seagrass distribution:
+Visual snapshots of the outputs are provided below, but the following full products can be explored and downloaded from [Seamap](https://seamapaustralia.org/map/):
+- [Seagrass/Macroalgae/Sand occurence probability layers](Seamap/or/metadata/link)
+- [Seagrass/Macroalgae/Sand benthic percentage cover layers (+associated fractional cover visualisation)](Seamap/or/metadata/link)
+- [Baseline seagrass extent](Seamap/or/metadata/link)
 
-Seamap link: [Seagrass Probability Map](https://seamapaustralia.org/tayaritja-seagrass-probability)
-![Seagrass Probability Map - Showing the continuous probability surface with values from 0-100%]
+![Seagrass Probability Map - continuous probability surface with values from 0-100%](./sgprob.png)
 
-Seamap link: [Seagrass Extent Map](https://seamapaustralia.org/tayaritja-seagrass-extent)
-![Seagrass Extent Map - Showing the binary presence/absence of seagrass after threshold application]
+![Seagrass Extent Map - binary presence/absence of seagrass after threshold application and manual editing](./sgextent.png)
 
-Seamap link: [Seagrass Percent Cover Map](https://seamapaustralia.org/tayaritja-seagrass-cover)
-![Seagrass Percent Cover Map - Showing the continuous estimation of seagrass cover percentage within the mapped extent]
+![Seagrass Percent Cover Map - continuous estimation of seagrass cover percentage within the mapped extent](./sgcov.png)
 
-Seamap link: [Seagrass Fractional Cover Map](https://seamapaustralia.org/tayaritja-seagrass-fractional)
-![Seagrass Fractional Cover Map - Showing the seagrass fractional cover product within the mapped extent]
+![Seagrass Fractional Cover Map - fractional cover product within the mapped extent](./sgfc.png)
 
-The maps reveal spatial patterns in seagrass distribution across the study area, with notable variations related to bathymetry, wave exposure, and substrate type. Dense seagrass beds are concentrated in protected areas with suitable depth and substrate conditions, while more patchy distribution is observed in transition zones.
 
 ### 5.2 Variable Importance
 
@@ -128,7 +125,7 @@ Analysis of variable importance across the classification models reveals the key
 
 4. **Substrate Complexity**: Rugosity metrics at various scales help differentiate suitable seagrass habitat from other benthic environments
 
-![Variable Importance Chart - Bar chart showing the relative importance of different predictor variables across classification models]
+![Example Variable Importance Chart - Bar chart representing the relative importance of different predictor variables across classification models (for seagrass presence)](./sgprob_vi.png)
 
 ### 5.3 Mapping Validation
 
@@ -156,7 +153,7 @@ For the habitat percent cover maps, we calculated Root Mean Square Error (RMSE) 
 
 These validation results indicate high accuracy for seagrass and sand mapping, with somewhat lower but still acceptable accuracy for macroalgae. The percent cover estimations show consistent performance across all habitat types, with RMSE values indicating that, on average, cover estimates are within 22-23% of field-measured values.
 
-## 6 Operational Considerations
+## 6. Operational Considerations
 
 This case study highlights several operational considerations when applying the SOP:
 
@@ -168,7 +165,7 @@ This case study highlights several operational considerations when applying the 
 
 4. **Temporal Dynamics**: The multi-temporal approach helps overcome limitations of single-date imagery but requires consideration of potential seasonal variations in seagrass extent
 
-## 7 Future Applications and Refinements
+## 7. Future Applications and Refinements
 
 The methodology demonstrated in this case study can be further refined in several ways:
 
