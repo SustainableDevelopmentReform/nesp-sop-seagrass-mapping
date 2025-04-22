@@ -37,7 +37,7 @@ User defined inputs/geometries
 - define these here in this script
 */
 // parameter set to load
-var params = seagrass_params.tayaritja_prob_24;
+var params = funs.tayaritja_prob_24;
 // seagrass type visualisation - extent, prob, binary?
 var sg_vis = viridis_float;
 var show_sg_points = true;
@@ -113,39 +113,11 @@ Extra processing on field data - MODIFY if custom_field_data == true
 var custom_field_data = false; // set to false to skip
 
 /*
-// this is for when the field data has a "year", "cover" and "pa" attribute
+// this is for when there are custom/bespoke changes to make to the field/training data
 if (custom_field_data) {
-  // year filter - can be `.lt`, `.lte`, `.eq` ... etc., or combined ee.Filter.and()
-  var filter_year = ee.Filter.and(ee.Filter.gte('year', 2019), ee.Filter.lte('year', 2021));
-  //var filter_year = ee.Filter.gte('year', 2022);
-  // percentage to cutdown data to
-  var trim_percentage = 1;
-  // anything else? (these can be based on anyfield in the data)
-  //  - if not used, just use a the empty notNull filter
-  //var filter_custom1 = ee.Filter.notNull([params.class_field]);
-  var filter_custom1 = ee.Filter.or(ee.Filter.gte('sg_cover', 20), ee.Filter.eq('sg_pa', 0));
-  // summarise what you've done breifly (so it can be recorded)
-  var custom_field_params = '2022, trim:1, cover:>20';
   
-  // DON'T MODIFY FROM HERE DOWN -----
-  // apply the filters
-  print("Imported training data size:", training_data_set.size());
-  training_data_set = training_data_set.filter(filter_year)
-                                       .filter(filter_custom1)
-                                       .randomColumn()
-                                       .filter(ee.Filter.lte('random', trim_percentage));
-  print("Filtered training data:", training_data_set.size());
-  // Add the params to the properties for image export
-  params.custom_field_params = custom_field_params;
 }
 */
-
-// this is for when the field data is combined geomorphic + benthic + seagrass classes
-if (custom_field_data) {
-  // use this to filter to geomorphic classes
-  training_data_set = training_data_set.filter(ee.Filter.eq("benthic", 1));
-}
-
 
 print("Training data set size: ", training_data_set.filterBounds(training_extent).size());
 print("Training data classes: ", training_data_set.filterBounds(training_extent).aggregate_histogram(params.class_field));
