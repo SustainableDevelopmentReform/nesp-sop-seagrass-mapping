@@ -1,6 +1,6 @@
 # Standard Operating Procedure for Seagrass Mapping using Optical Remote Sensing
 
-*Version 1.0, March 2025*
+*Version 1.0, April 2025*
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
