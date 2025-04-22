@@ -136,7 +136,7 @@ Analysis of variable importance across the classification models reveals the key
 
 ### 5.3 Mapping Validation
 
-The validation process follows the protocols outlined in Section 8 of the SOP, employing a resampling-based approach as described in Lyons et al. (2018). We used a hold-out method with 33% of field data withheld from model training and used exclusively for validation. This process was repeated 1000 times with random partitioning to ensure robust accuracy assessment. A comprehensive [R script](./mapping_validation.R) was developed to peform the validation, which also draws on the provided covariate pixel drill stack.
+The validation process follows the protocols outlined in Section 8 of the SOP, employing a resampling-based approach as described in Lyons et al. (2018). We used a hold-out method with 33% of field data withheld from model training and used exclusively for validation. This process was repeated 1000 times with random partitioning to ensure robust accuracy assessment. A comprehensive [R script](./mapping_validation.R) was developed to peform the validation, which also draws on the provided [covariate pixel drill stack](./boss_nesp36_covariate_drill.csv).
 
 To validate the habitat occurrence probability maps, we converted probabilities to binary presence using a 0.5 threshold. The following accuracy metrics were calculated:
 
