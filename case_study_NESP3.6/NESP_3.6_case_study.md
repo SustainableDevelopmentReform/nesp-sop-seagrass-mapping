@@ -1,5 +1,13 @@
 # SOP Case Study Application - Tayaritja (Furneaux Islands) Seagrass Mapping
 
+
+*Version 0.9, April 2025*
+
+*A larger set of authors will be compiled for v1.0, but for the meantime please contact:*  
+Mitchell Lyons (mitchell.lyons@unsw.edu.au)  
+
+  
+
 ## 1. Project Overview
 
 This case study demonstrates the application of the Seagrass Mapping SOP to map benthic habitats, with particular focus on seagrass meadows, in the Furneaux Group of Islands (Tayaritja) in north-eastern Tasmania. The project was conducted as part of the National Environmental Science Program (NESP) Marine and Coastal Hub's Project 3.6, which aimed to improve data on the distribution and ecological value of temperate subtidal seagrass in the region.
