@@ -1,7 +1,11 @@
 # Standard Operating Procedure for Seagrass Mapping using Optical Remote Sensing
 
-*Version 1.0, April 2025*
+*Version 0.9, April 2025*
 
+*A larger set of authors will be compiled for v1.0, but for the meantime please contact:*  
+Mitchell Lyons (mitchell.lyons@unsw.edu.au)  
+
+  
 ## Table of Contents
 1. [Introduction](#1-introduction)
 2. [SOP Development](#2-sop-development)
